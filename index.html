@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infratech — Solutions Intelligentes & Réseaux en Courant Faible</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0A1D37;
+            --secondary: #0066CC;
+            --accent: #00D26A;
+            --light: #F4F7FA;
+            --dark: #1E293B;
+            --gray: #64748B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        .top-bar-info span {
+            margin-right: 20px;
+        }
+        .top-bar-info i {
+            color: var(--secondary);
+            margin-right: 5px;
+        }
+        .top-social a {
+            color: #fff;
+            margin-left: 15px;
+            transition: 0.3s;
+        }
+        .top-social a:hover {
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span {
+            color: var(--secondary);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: var(--secondary);
+        }
+        .btn-quote {
+            background-color: var(--secondary);
+            color: #fff !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn-quote:hover {
+            background-color: #0052a3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 29, 55, 0.85), rgba(10, 29, 55, 0.85)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            color: #fff;
+            padding: 120px 5%;
+            text-align: left;
+        }
+        .hero-content {
+            max-width: 700px;
+        }
+        .hero span {
+            background: rgba(0, 102, 204, 0.3);
+            color: #60a5fa;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 20px 0;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 30px;
+        }
+        .hero-buttons a {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background-color: var(--secondary);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: #0052a3;
+        }
+        .btn-outline {
+            border: 2px solid #fff;
+            color: #fff;
+        }
+        .btn-outline:hover {
+            background-color: #fff;
+            color: var(--primary);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-color: var(--primary);
+            color: #fff;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 40px 5%;
+            text-align: center;
+            gap: 20px;
+            border-top: 4px solid var(--secondary);
+        }
+        .stat-item h3 {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        .stat-item p {
+            font-size: 14px;
+            color: #cbd5e1;
+            text-transform: uppercase;
+        }
+
+        /* Section Generic Styles */
+        section {
+            padding: 80px 5%;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title span {
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+
+        /* Services Grid */
+        .services {
+            background-color: var(--light);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--secondary);
+        }
+        .service-card i {
+            font-size: 40px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .service-card p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: var(--light);
+            padding: 50px;
+            border-radius: 10px;
+        }
+        .contact-info h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .contact-info p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        .info-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        .info-box i {
+            background: var(--secondary);
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .contact-form input, .contact-form select, .contact-form textarea {
+            padding: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            outline: none;
+            font-size: 15px;
+        }
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+            border-color: var(--secondary);
+        }
+        .contact-form button {
+            background-color: var(--secondary);
+            color: #fff;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .contact-form button:hover {
+            background-color: #0052a3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 40px 5% 20px;
+            text-align: center;
+        }
+        .footer-content {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .copyright {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media(max-width: 968px) {
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .contact-container { grid-template-columns: 1fr; padding: 20px; }
+            nav ul { display: none; }
+            .hero h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre Supérieure -->
+    <div class="top-bar">
+        <div class="top-bar-info">
+            <span><i class="fas fa-map-marker-alt"></i> Imama, Tlemcen, Algérie</span>
+            <span><i class="fas fa-envelope"></i> contact@infratech.dz</span>
+        </div>
+        <div class="top-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header>
+        <a href="#" class="logo"><i class="fas fa-network-wired"></i> INFRA<span>TECH</span></a>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="btn-quote">Devis Gratuit</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Héro -->
+    <section class="hero">
+        <div class="hero-content">
+            <span>Solutions Intelligentes & Sécurisées</span>
+            <h1>Expertise IT, Réseaux & Sécurité Électronique</h1>
+            <p>Infratech accompagne les entreprises et institutions avec des solutions performantes en télécommunications, vidéosurveillance, contrôle d'accès et infrastructures sur-mesure.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">Nos Services</a>
+                <a href="#contact" class="btn-outline">Nous Contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chiffres Clés -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <h3>+100</h3>
+            <p>Projets Réalisés</p>
+        </div>
+        <div class="stat-item">
+            <h3>100%</h3>
+            <p>Conforme Normes</p>
+        </div>
+        <div class="stat-item">
+            <h3>24/7</h3>
+            <p>Support Technique</p>
+        </div>
+        <div class="stat-item">
+            <h3>Expert</h3>
+            <p>Accompagnement</p>
+        </div>
+    </div>
+
+    <!-- Section Services -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <span>Nos Domaines d'Expertise</span>
+            <h2>L'Intelligence Technologique au Service de Vos Projets</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-video"></i>
+                <h3>Vidéosurveillance (CCTV)</h3>
+                <p>Systèmes de caméras IP haute définition, enregistreurs NVR et supervision intelligente à distance sur mobile et PC.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-fire-extinguisher"></i>
+                <h3>Détection Incendie</h3>
+                <p>Conception et installation de centrales de détection d'incendie adressables et conventionnelles conformes aux normes.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Systèmes Anti-Intrusion</h3>
+                <p>Alarmes intelligentes, détecteurs de mouvement et barrières infrarouges pour sécuriser vos espaces sensibles.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-fingerprint"></i>
+                <h3>Contrôle d'Accès</h3>
+                <p>Gestion des flux par lecteurs de badges RFID, biométrie, interphonie vidéo et tourniquets sécurisés.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-server"></i>
+                <h3>Réseaux Informatiques (VDI)</h3>
+                <p>Câblage structuré en cuivre (Cat6/6A), fibre optique, baies de brassage et déploiement Wi-Fi professionnel.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Téléphonie d'Entreprise</h3>
+                <p>Installation et configuration de standards téléphoniques IPBX, VoIP et solutions de communication unifiée.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Électricité & Courant Faible</h3>
+                <p>Réalisation d'armoires électriques, onduleurs (UPS) et distribution sécurisée pour vos équipements.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-tools"></i>
+                <h3>Maintenance & Dépannage</h3>
+                <p>Contrats d'entretien préventif, diagnostic rapide de pannes et assistance technique par nos experts qualifiés.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <div class="section-title">
+            <span>Parlons de votre projet</span>
+            <h2>Contactez Infratech dès aujourd'hui</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Nos Coordonnées</h3>
+                <p>Vous avez un besoin en infrastructure réseau, sécurité ou courant faible ? Notre équipe technique vous répond dans les plus brefs délais.</p>
+                <div class="info-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Adresse :</strong>
+                        <p>Imama, Tlemcen, Algérie</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email :</strong>
+                        <p>contact@infratech.dz</p>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>Téléphone :</strong>
+                        <p>+213 [Votre Numéro]</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <input type="text" placeholder="Votre Nom / Entreprise" required>
+                    <input type="email" placeholder="Votre Adresse E-mail" required>
+                    <input type="tel" placeholder="Votre Numéro de Téléphone" required>
+                    <select>
+                        <option value="">Sélectionner un service</option>
+                        <option>Vidéosurveillance (CCTV)</option>
+                        <option>Détection incendie</option>
+                        <option>Anti-intrusion</option>
+                        <option>Contrôle d'accès</option>
+                        <option>Réseaux informatiques (VDI)</option>
+                        <option>Téléphonie d'entreprise</option>
+                        <option>Maintenance et câblage</option>
+                    </select>
+                    <textarea rows="4" placeholder="Décrivez votre projet..." required></textarea>
+                    <button type="submit">Envoyer ma demande</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#" class="logo" style="color: #fff;"><i class="fas fa-network-wired"></i> INFRA<span>TECH</span></a>
+            <p style="color: #94a3b8; font-size: 14px;">Solutions d'infrastructures et de sécurité électronique en Algérie.</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Infratech. Tous Droits Réservés.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
